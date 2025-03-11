@@ -1,211 +1,289 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kremes No.1 Indonesia</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="scripts.js"></script>
+    <title>Kremes Kraton - #TaburKremesKraton</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rubik:wght@400;600&family=Roboto:wght@400;500&display=swap">
+    
     <style>
-        /* Basic styles for layout and responsiveness */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #ffe5b4;
+            color: #7c3506;
         }
-
-        .bagian1 {
-            text-align: center;
+        header {
+            background: url('bg2.jpg') center/cover no-repeat;
+            color: white;
             padding: 20px;
+            text-align: center;
         }
-
-        .logoatas img {
-            max-width: 150px;
+        header img {
+            max-width: 120px;
             height: auto;
+        } 
+        nav {
+            display: flex;
+            justify-content: center;
+            background: url('gold.jpg') center/cover no-repeat;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease-in-out;
         }
-
-        .kremesno1 h2 {
-            font-size: 1.8rem;
-            color: #333;
-            margin: 20px 0;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
         }
-
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: white;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        nav a:hover {
+            transform: scale(1.1);
+            color: #ffe5b4;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 40px;
+        }
+        .snack {
+            background: #ffe5b4;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 260px;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+        .snack:hover {
+            transform: scale(1.03);
+        }
+        .snack img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .snack h3 {
+            margin: 12px 0;
+            color: #e67e22;
+            font-size: 18px;
+        }
+        .about {
+            text-align: center;
+            padding: 75px;
+            background: #ffe5b4;
+        }
+        .about h2 {
+            font-family: 'Rubik', sans-serif;
+        }
+        .about p {
+            font-family: 'Roboto', sans-serif;
+        }
         .slideshow-container {
             position: relative;
-            max-width: 100%;
+            max-width: 60%;
             margin: auto;
             overflow: hidden;
         }
-
-        .mySlides {
+        .slide {
             display: none;
         }
-
-        .mySlides img {
+        .slide img {
             width: 100%;
             height: auto;
         }
-
-        .numbertext {
-            position: absolute;
-            top: 8px;
-            left: 16px;
+        .contact {
+            text-align: center;
+            padding: 50px;
+            background: url('gold.jpg') center/cover no-repeat;
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px;
-            border-radius: 3px;
         }
-
-        .text {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
+        .contact a {
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 500;
         }
-
-        .prev, .next {
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: url('bg2.jpg') center/cover no-repeat;
+            color: white;
+            font-size: 14px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 60%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+        .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            margin-top: -22px;
+            right: 10px;
             padding: 16px;
             color: white;
+            font-weight: bold;
+            font-size: 24px;
             background-color: rgba(0, 0, 0, 0.5);
-            border: none;
             border-radius: 50%;
             transform: translateY(-50%);
-            z-index: 10;
+            user-select: none;
         }
-
-        .prev {
-            left: 0;
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
-
-        .next {
-            right: 0;
-        }
-
-        .options {
-            margin-top: 20px;
-        }
-
-        .options img {
-            max-width: 100px;
-            height: auto;
-            margin: 10px;
-        }
-
-        .options button {
-            display: inline-block;
-            margin: 10px 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .options button:hover {
-            background-color: #ff4500;
-        }
-
-        .bagian2 {
+        .snack {
+            background: #ffe5b4;
             padding: 20px;
-            background-color: #f9f9f9;
-            text-align: left;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 260px;
+            text-align: center;
+            opacity: 0; /* Start with invisible elements */
+            transform: scale(0.5); /* Start small */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Scroll animation */
         }
-
-        .tentangkami {
-            max-width: 600px;
-            margin: auto;
+        .snack.visible {
+            opacity: 1; /* Make elements visible */
+            transform: scale(1); /* Pop up to full size */
         }
-
-        .tentangkami p {
-            margin: 10px 0;
-        }
-
-        .texttentangkami {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .textkremes {
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 768px) {
-            .kremesno1 h2 {
-                font-size: 1.5rem;
-            }
-
-            .options img {
-                max-width: 80px;
-            }
-
-            .options button {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
+        .snack:hover {
+            transform: scale(1.03) translateY(-5px); /* Hover effect */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Hover transition */
         }
     </style>
 </head>
 <body>
-    <div class="bagian1">
-        <div class="logoatas">
-            <img class="logosize" src="logokraton.png" alt="Logo Kraton">
-        </div>
-
-        <div class="kremesno1">
-            <h2>#KREMES <br>NO.1 INDONESIA</h2>
-        </div>
-
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="kremestulisan260g.jpg" alt="Kremes Ayam">
-                <div class="text">Kremes Ayam</div>
-            </div>
-
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="kremespedas1.jpg" alt="Kremes Pedas Daun Jeruk">
-                <div class="text">Kremes Pedas Daun Jeruk</div>
-            </div>
-
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                <img src="tempe.jpg" alt="Tempe Kremes">
-                <div class="text">Tempe Kremes</div>
-            </div>
-
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-        </div>
+    <header>
+        <img src="logokremeskraton.png" alt="Logo">
+    </header>
+    <nav>
+        <a href="#about"><strong>TENTANG KAMI</strong></a>
+        <a href="#products"><strong>PRODUK</strong></a>
+        <a href="#contact"><strong>KONTAK</strong></a>
+    </nav>
+    <section id="about" class="about">
+        <h2>#TaburKremesKraton</h2>
+        <p>Nikmati kelezatan khas Indonesia dengan rasa rempah melimpah. Dibuat secara higenis untuk memastikan kualitas terbaik, Kremes Kraton menghadirkan sensasi gurih dan renyah yang tak tertandingi.</p>
+        <p>Cita rasa autentik yang dijamin akan membuat kamu ketagihan. Teman makan kapanpun dan dimanapun!</p>
+    </section>
+    <div class="slideshow-container">
+        <div class="slide"><img src="ramadan.jpg" alt="Banner1"></div>
+        <div class="slide"><img src="review.jpg" alt="Banner2"></div>
+        <a class="next" onclick="nextSlide()">&#10095;</a> <!-- Next arrow -->
     </div>
+    <section id="products" class="container">
+      <div class="snack">
+          <img src="sachet2.jpg" alt="Kremes Kraton Sachet">
+          <h3>Kremes Kraton Sachet</h3>
+      </div>
+      <div class="snack">
+          <img src="toples2.jpg" alt="Kremes Kraton Toples">
+          <h3>Kremes Kraton Toples</h3>
+      </div>
+      <div class="snack">
+          <img src="1kgori.jpg" alt="Kremes Kraton 1KG">
+          <h3>Kremes Kraton 1KG</h3>
+      </div>
+  </section>
+    <section id="contact" class="contact">
+        <h2>Hubungi Kami</h2>
+        <p>Email: <a href="mailto:info@kremeskraton.com">info@kremeskraton.com</a></p>
+        <p>Telepon: +(62)877-9898-5615</p>
+        <p>Ikuti kami di <a href="https://www.instagram.com/kremeskraton">Instagram</a> | <a href="https://www.tiktok.com/@kremeskraton">TikTok</a></p>
+    </section>
+    <footer>
+        &copy; 2025 Kremes Kraton. Semua hak dilindungi.
+    </footer>
+    <script>
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 
-    <div class="options">
-        <img class="cod" src="cod.png" alt="COD">
-        <img class="ongkir" src="gratisong.png" alt="Gratis Ongkir">
-        <button onclick="toped()">BELI DI TOKOPEDIA</button>
-        <button onclick="shopee()">BELI DI SHOPEE</button>
-        <button onclick="tiktokshop()">BELI DI TIKTOKSHOP</button>
-    </div>
+    // Function to add the "visible" class to elements in the viewport
+    function animateOnScroll() {
+        const snacks = document.querySelectorAll('.snack');
+        snacks.forEach(snack => {
+            if (isInViewport(snack)) {
+                snack.classList.add('visible');
+            }
+        });
+    }
 
-    <div class="bagian2">
-        <article class="tentangkami">
-            <p class="texttentangkami">Tentang Kami</p>
-            <p class="textkremes">Kremes "Ayam Kremes Kraton" merupakan Kremes Ayam Premium yang dibuat dari bahan-bahan terbaik, Ayam Kampung Asli, serta bebas pengawet. Kremes "Ayam Kremes Kraton" selain cocok sebagai pendamping makanan, juga bisa dimakan langsung.</p>
-        </article>
-    </div>
+    // Add event listener for scroll
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Trigger the animation on page load in case elements are already in the viewport
+    animateOnScroll();
+  </script>
+    <script>
+      let slideIndex = 0;
+      let autoSlide = true; // Variable to control automatic sliding
+
+      function showSlides() {
+          let slides = document.getElementsByClassName("slide");
+          if (autoSlide) {
+              for (let i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";
+              }
+              slideIndex++;
+              if (slideIndex > slides.length) { slideIndex = 1; }
+              slides[slideIndex - 1].style.display = "block";
+              setTimeout(showSlides, 3000); // Continue automatic sliding
+          }
+      }
+
+      function nextSlide() {
+          autoSlide = false; // Stop automatic sliding
+          let slides = document.getElementsByClassName("slide");
+          for (let i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) { slideIndex = 1; }
+          slides[slideIndex - 1].style.display = "block";
+      }
+
+      showSlides(); // Start the slideshow
+  </script>
 </body>
 </html>
