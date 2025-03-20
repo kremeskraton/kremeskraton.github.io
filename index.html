@@ -89,6 +89,7 @@
             margin: 12px 0;
             color: #e67e22;
             font-size: 18px;
+            text-decoration: none !important;
         }
         .about {
             text-align: center;
@@ -105,7 +106,7 @@
             position: relative;
             max-width: 60%;
             margin: auto;
-            overflow: hidden;
+            overflow: visible;
         }
         .slide {
             display: none;
@@ -116,14 +117,27 @@
         }
         .contact {
             text-align: center;
-            padding: 50px;
+            padding: 60px 20px;
             background: url('gold.jpg') center/cover no-repeat;
             color: white;
+            margin-top: 60px;
+        }
+        .contact h2 {
+            margin-bottom: 30px;
+            font-size: initial;
+        }
+        .contact p {
+            margin: 15px 0;
+            font-size: initial;
         }
         .contact a {
             color: white;
             text-decoration: none;
             font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        .contact a:hover {
+            opacity: 0.8;
         }
         footer {
             text-align: center;
@@ -132,24 +146,10 @@
             color: white;
             font-size: 14px;
         }
-        .slideshow-container {
-            position: relative;
-            max-width: 75%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .slide {
-            display: none;
-        }
-        .slide img {
-            width: 100%;
-            height: auto;
-        }
-        .next {
+        .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            right: 10px;
             padding: 16px;
             color: white;
             font-weight: bold;
@@ -158,8 +158,17 @@
             border-radius: 50%;
             transform: translateY(-50%);
             user-select: none;
+            z-index: 2;
+            text-decoration: none;
+            display: block; /* Ensure arrows are displayed as blocks */
         }
-        .next:hover {
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
         .snack {
@@ -179,9 +188,213 @@
             transform: scale(1); /* Pop up to full size */
         }
         .snack:hover {
-            transform: scale(1.03) translateY(-5px); /* Hover effect */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Hover transition */
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .snack a {
+            text-decoration: none;
+            color: #e67e22;
+            display: block;
+        }
+        
+        .snack a:hover {
+            text-decoration: none;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #7c3506, #e67e22);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #e67e22, #7c3506);
+        }
+
+        .nav-button:active {
+            transform: translateY(1px);
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        /* Remove the old nav hover effect */
+        nav a::after {
+            display: none;
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        .whatsapp-button a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .whatsapp-button a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #128C7E;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .whatsapp-button a {
+                padding: 10px;
+            }
+            
+            .whatsapp-button span {
+                display: none; /* Hide text on mobile */
+            }
+            
+            .whatsapp-button img {
+                margin-right: 0;
+            }
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Scale animation */
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Apply animations to sections */
+        .hero {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .slideshow-container {
+            animation: scaleIn 1s ease-out;
+        }
+
+        .snack {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .snack.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .snack img {
+            transition: transform 0.3s ease;
+        }
+
+        .snack:hover img {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .contact {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation animation */
+        nav {
+            transition: background 0.3s ease, padding 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px;
+            background: rgba(124, 53, 6, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Product grid animations */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* Loading animation for images */
+        img {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        img.loaded {
+            opacity: 1;
         }
     </style>
 </head>
@@ -190,9 +403,9 @@
         <img src="logokremeskraton.png" alt="Logo">
     </header>
     <nav>
-        <a href="#about"><strong>TENTANG KAMI</strong></a>
-        <a href="#products"><strong>PRODUK</strong></a>
-        <a href="#contact"><strong>KONTAK</strong></a>
+        <a href="#about" class="nav-button"><strong>TENTANG KAMI</strong></a>
+        <a href="#products" class="nav-button"><strong>PRODUK</strong></a>
+        <a href="#contact" class="nav-button"><strong>KONTAK</strong></a>
     </nav>
     <section id="about" class="about">
         <h2>#TaburKremesKraton</h2>
@@ -200,24 +413,31 @@
         <p>Cita rasa autentik yang dijamin akan membuat kamu ketagihan. Teman makan kapanpun dan dimanapun!</p>
     </section>
     <div class="slideshow-container">
+        <a class="prev" onclick="prevSlide()">&#10094;</a>
         <div class="slide"><img src="ramadan.jpg" alt="Banner1"></div>
         <div class="slide"><img src="review.jpg" alt="Banner2"></div>
-        <a class="next" onclick="nextSlide()">&#10095;</a> <!-- Next arrow -->
+        <a class="next" onclick="nextSlide()">&#10095;</a>
     </div>
     <section id="products" class="container">
       <div class="snack">
-          <img src="sachet2.jpg" alt="Kremes Kraton Sachet">
-          <h3>Kremes Kraton Sachet</h3>
+          <a href="kremes-kraton-sachet.html">
+              <img src="sachet2.jpg" alt="Kremes Kraton Sachet">
+              <h3>Kremes Kraton Sachet</h3>
+          </a>
       </div>
       <div class="snack">
-          <img src="toples2.jpg" alt="Kremes Kraton Toples">
-          <h3>Kremes Kraton Toples</h3>
+          <a href="kremes-kraton-toples.html">
+              <img src="toples2.jpg" alt="Kremes Kraton Toples">
+              <h3>Kremes Kraton Toples</h3>
+          </a>
       </div>
       <div class="snack">
-          <img src="1kgori.jpg" alt="Kremes Kraton 1KG">
-          <h3>Kremes Kraton 1KG</h3>
+          <a href="kremes-kraton-1kg.html">
+              <img src="1kgori.jpg" alt="Kremes Kraton 1KG">
+              <h3>Kremes Kraton 1KG</h3>
+          </a>
       </div>
-  </section>
+    </section>
     <section id="contact" class="contact">
         <h2>Hubungi Kami</h2>
         <p>Email: <a href="mailto:info@kremeskraton.com">info@kremeskraton.com</a></p>
@@ -227,6 +447,12 @@
     <footer>
         &copy; 2025 Kremes Kraton. Semua hak dilindungi.
     </footer>
+    <div class="whatsapp-button">
+        <a href="https://wa.me/6287798985615" target="_blank">
+            <img src="whatsapp-icon.png" alt="WhatsApp">
+            <span>Chat Kami</span>
+        </a>
+    </div>
     <script>
     // Function to check if an element is in the viewport
     function isInViewport(element) {
@@ -256,34 +482,74 @@
     animateOnScroll();
   </script>
     <script>
-      let slideIndex = 0;
-      let autoSlide = true; // Variable to control automatic sliding
+        let slideIndex = 1;
+        let autoSlide = false;
 
-      function showSlides() {
-          let slides = document.getElementsByClassName("slide");
-          if (autoSlide) {
-              for (let i = 0; i < slides.length; i++) {
-                  slides[i].style.display = "none";
-              }
-              slideIndex++;
-              if (slideIndex > slides.length) { slideIndex = 1; }
-              slides[slideIndex - 1].style.display = "block";
-              setTimeout(showSlides, 3000); // Continue automatic sliding
-          }
-      }
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
 
-      function nextSlide() {
-          autoSlide = false; // Stop automatic sliding
-          let slides = document.getElementsByClassName("slide");
-          for (let i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";
-          }
-          slideIndex++;
-          if (slideIndex > slides.length) { slideIndex = 1; }
-          slides[slideIndex - 1].style.display = "block";
-      }
+        function nextSlide() {
+            showSlides(slideIndex += 1);
+        }
 
-      showSlides(); // Start the slideshow
-  </script>
+        function prevSlide() {
+            showSlides(slideIndex -= 1);
+        }
+
+        // Show first slide initially
+        showSlides(slideIndex);
+    </script>
+    <script>
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation scroll effect
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Reveal elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.snack').forEach((el) => observer.observe(el));
+
+            // Image loading animation
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                });
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
