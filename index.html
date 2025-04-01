@@ -32,7 +32,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background 0.3s ease-in-out;
         }
         nav a {
             color: white;
@@ -41,26 +40,6 @@
             font-size: 16px;
             font-weight: 500;
             padding: 10px 15px;
-            transition: all 0.3s ease-in-out;
-            position: relative;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 0;
-            height: 3px;
-            background: white;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-        }
-        nav a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-        nav a:hover {
-            transform: scale(1.1);
-            color: #ffe5b4;
         }
         .container {
             display: flex;
@@ -76,14 +55,16 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 260px;
             text-align: center;
-            transition: transform 0.2s ease-in-out;
-        }
-        .snack:hover {
-            transform: scale(1.03);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .snack img {
             width: 100%;
             border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .snack:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         .snack h3 {
             margin: 12px 0;
@@ -134,10 +115,6 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s ease;
-        }
-        .contact a:hover {
-            opacity: 0.8;
         }
         footer {
             text-align: center;
@@ -150,7 +127,9 @@
             cursor: pointer;
             position: absolute;
             top: 50%;
-            padding: 16px;
+            width: 40px;
+            height: 40px;
+            padding: 0;
             color: white;
             font-weight: bold;
             font-size: 24px;
@@ -160,46 +139,25 @@
             user-select: none;
             z-index: 2;
             text-decoration: none;
-            display: block; /* Ensure arrows are displayed as blocks */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .prev {
-            left: 10px;
+            left: -20px;
         }
         .next {
-            right: 10px;
+            right: -20px;
         }
         .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
-        }
-        .snack {
-            background: #ffe5b4;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 260px;
-            text-align: center;
-            opacity: 0; /* Start with invisible elements */
-            transform: scale(0.5); /* Start small */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Scroll animation */
-        }
-        .snack.visible {
-            opacity: 1; /* Make elements visible */
-            transform: scale(1); /* Pop up to full size */
-        }
-        .snack:hover {
-            transform: scale(1.03) translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform: translateY(-50%) scale(1.1);
         }
         .snack a {
             text-decoration: none;
             color: #e67e22;
             display: block;
-        }
-        
-        .snack a:hover {
-            text-decoration: none;
         }
         .nav-button {
             display: inline-block;
@@ -213,21 +171,18 @@
             cursor: pointer;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out;
             position: relative;
             overflow: hidden;
         }
-
         .nav-button:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             background: linear-gradient(45deg, #e67e22, #7c3506);
         }
-
         .nav-button:active {
             transform: translateY(1px);
         }
-
         .nav-button::before {
             content: '';
             position: absolute;
@@ -243,23 +198,15 @@
             );
             transition: 0.5s;
         }
-
         .nav-button:hover::before {
             left: 100%;
-        }
-
-        /* Remove the old nav hover effect */
-        nav a::after {
-            display: none;
         }
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            animation: bounce 2s infinite;
         }
-
         .whatsapp-button a {
             display: flex;
             align-items: center;
@@ -269,31 +216,19 @@
             text-decoration: none;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
             font-weight: 500;
+            transition: all 0.3s ease-in-out;
         }
-
-        .whatsapp-button img {
-            width: 30px;
-            height: 30px;
-            margin-right: 8px;
-        }
-
         .whatsapp-button a:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             background-color: #128C7E;
         }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
         }
-
         @media (max-width: 768px) {
             .whatsapp-button {
                 bottom: 15px;
@@ -305,96 +240,12 @@
             }
             
             .whatsapp-button span {
-                display: none; /* Hide text on mobile */
+                display: none;
             }
             
             .whatsapp-button img {
                 margin-right: 0;
             }
-        }
-
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Slide-in animation */
-        @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Scale animation */
-        @keyframes scaleIn {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Apply animations to sections */
-        .hero {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .slideshow-container {
-            animation: scaleIn 1s ease-out;
-        }
-
-        .snack {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-
-        .snack.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .snack img {
-            transition: transform 0.3s ease;
-        }
-
-        .snack:hover img {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .contact {
-            animation: fadeIn 1s ease-out;
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation animation */
-        nav {
-            transition: background 0.3s ease, padding 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 10px;
-            background: rgba(124, 53, 6, 0.95);
-            backdrop-filter: blur(5px);
-        }
-
-        /* Product grid animations */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        /* Loading animation for images */
-        img {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        img.loaded {
-            opacity: 1;
         }
     </style>
 </head>
@@ -413,9 +264,9 @@
         <p>Cita rasa autentik yang dijamin akan membuat kamu ketagihan. Teman makan kapanpun dan dimanapun!</p>
     </section>
     <div class="slideshow-container">
-        <a class="prev" onclick="prevSlide()">&#10094;</a>
         <div class="slide"><img src="ramadan.jpg" alt="Banner1"></div>
         <div class="slide"><img src="review.jpg" alt="Banner2"></div>
+        <a class="prev" onclick="prevSlide()">&#10094;</a>
         <a class="next" onclick="nextSlide()">&#10095;</a>
     </div>
     <section id="products" class="container">
@@ -454,36 +305,7 @@
         </a>
     </div>
     <script>
-    // Function to check if an element is in the viewport
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Function to add the "visible" class to elements in the viewport
-    function animateOnScroll() {
-        const snacks = document.querySelectorAll('.snack');
-        snacks.forEach(snack => {
-            if (isInViewport(snack)) {
-                snack.classList.add('visible');
-            }
-        });
-    }
-
-    // Add event listener for scroll
-    window.addEventListener('scroll', animateOnScroll);
-
-    // Trigger the animation on page load in case elements are already in the viewport
-    animateOnScroll();
-  </script>
-    <script>
         let slideIndex = 1;
-        let autoSlide = false;
 
         function showSlides(n) {
             let slides = document.getElementsByClassName("slide");
@@ -504,49 +326,17 @@
             showSlides(slideIndex -= 1);
         }
 
-        // Show first slide initially
-        showSlides(slideIndex);
-    </script>
-    <script>
-        // Scroll animations
+        // Show first slide when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Navigation scroll effect
-            window.addEventListener('scroll', function() {
-                const nav = document.querySelector('nav');
-                if (window.scrollY > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
-
-            // Reveal elements on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            document.querySelectorAll('.snack').forEach((el) => observer.observe(el));
-
-            // Image loading animation
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
-                });
-            });
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            showSlides(slideIndex);
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
         });
