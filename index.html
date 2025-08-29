@@ -79,9 +79,24 @@
         }
         .about h2 {
             font-family: 'Rubik', sans-serif;
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            margin: 0 0 12px;
+            letter-spacing: 0.5px;
+            color: #7c3506;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
         }
         .about p {
             font-family: 'Roboto', sans-serif;
+            max-width: 900px;
+            margin: 6px auto;
+        }
+        .about .accent {
+            width: 90px;
+            height: 4px;
+            background: linear-gradient(45deg, #7c3506, #e67e22);
+            border-radius: 4px;
+            margin: 10px auto 0;
         }
         .slideshow-container {
             position: relative;
@@ -201,6 +216,54 @@
         .nav-button:hover::before {
             left: 100%;
         }
+        /* Minimal top-right hamburger menu */
+        nav {
+            justify-content: flex-end;
+        }
+        .menu-button {
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.35);
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-direction: column;
+            transition: background 0.2s ease;
+        }
+        .menu-button:hover { background: rgba(0,0,0,0.5); }
+        .menu-button span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 2px;
+        }
+        .menu-panel {
+            position: absolute;
+            top: 100%;
+            right: 10px;
+            margin-top: 10px;
+            background: #ffffff;
+            color: #7c3506;
+            min-width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 8px;
+        }
+        .menu-panel a {
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #7c3506;
+            border-radius: 8px;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+        .menu-panel a:hover { background: rgba(124,53,6,0.08); }
+        .menu-panel a:active { transform: scale(0.98); }
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -230,6 +293,16 @@
             margin-right: 8px;
         }
         @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 10px;
+                align-content: center;
+            }
+            nav .nav-button { display: none; }
+            header img {
+                max-width: 90px;
+            }
             .whatsapp-button {
                 bottom: 15px;
                 right: 15px;
@@ -246,6 +319,18 @@
             .whatsapp-button img {
                 margin-right: 0;
             }
+            /* Ensure about heading centers perfectly on mobile */
+            .about {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 48px 16px;
+            }
+            .about h2, .about p { text-align: center; }
+            .about p { max-width: 95%; }
+        }
+        @media (max-width: 480px) {
+            .menu-button { width: 36px; height: 36px; }
         }
     </style>
 </head>
@@ -254,12 +339,22 @@
         <img src="logokremeskraton.png" alt="Logo">
     </header>
     <nav>
-        <a href="#about" class="nav-button"><strong>TENTANG KAMI</strong></a>
-        <a href="#products" class="nav-button"><strong>PRODUK</strong></a>
-        <a href="#contact" class="nav-button"><strong>KONTAK</strong></a>
+        <button class="menu-button" aria-expanded="false" aria-controls="menu-panel" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div id="menu-panel" class="menu-panel" hidden>
+            <a href="index.html">Beranda</a>
+            <a href="#about">Tentang Kami</a>
+            <a href="#products">Produk</a>
+            <a href="#contact">Kontak</a>
+            <a href="reseller.html">Daftar Reseller</a>
+        </div>
     </nav>
     <section id="about" class="about">
         <h2>#TaburKremesKraton</h2>
+        <div class="accent"></div>
         <p>Nikmati kelezatan khas Indonesia dengan rasa rempah melimpah. Dibuat secara higenis untuk memastikan kualitas terbaik, Kremes Kraton menghadirkan sensasi gurih dan renyah yang tak tertandingi.</p>
         <p>Cita rasa autentik yang dijamin akan membuat kamu ketagihan. Teman makan kapanpun dan dimanapun!</p>
     </section>
@@ -337,6 +432,47 @@
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
+                });
+            });
+
+            // Menu toggle logic
+            const menuButton = document.querySelector('.menu-button');
+            const menuPanel = document.getElementById('menu-panel');
+
+            function closeMenu() {
+                if (!menuPanel.hasAttribute('hidden')) {
+                    menuPanel.setAttribute('hidden', '');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            menuButton.addEventListener('click', function() {
+                const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+                if (expanded) {
+                    closeMenu();
+                } else {
+                    menuPanel.removeAttribute('hidden');
+                    menuButton.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuPanel.hasAttribute('hidden')) {
+                    const isClickInside = menuPanel.contains(e.target) || menuButton.contains(e.target);
+                    if (!isClickInside) closeMenu();
+                }
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+
+            // Close on item click (after smooth scroll)
+            document.querySelectorAll('.menu-panel a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMenu();
                 });
             });
         });
