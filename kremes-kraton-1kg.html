@@ -86,7 +86,7 @@
 
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             background: url('gold.jpg') center/cover no-repeat;
             padding: 15px;
             position: sticky;
@@ -108,6 +108,15 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
             display: block;
+        }
+        .product-hero h1 {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            margin: 12px 0;
+            letter-spacing: 0.5px;
+            color: #7c3506;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
         }
 
         .flavors-grid {
@@ -260,10 +269,47 @@
             color: white;
             font-size: 14px;
         }
+        /* WhatsApp floating button (match index.html) */
+        .whatsapp-button { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .whatsapp-button a { display: flex; align-items: center; padding: 12px 20px; background-color: #25D366; color: white; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); font-weight: 500; transition: all 0.3s ease-in-out; }
+        .whatsapp-button a:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); background-color: #128C7E; }
+        .whatsapp-button img { width: 30px; height: 30px; margin-right: 8px; }
+        /* Minimal dropdown menu */
+        .menu-button { width: 40px; height: 40px; background: rgba(0,0,0,0.35); border: 0; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex-direction: column; transition: background 0.2s ease; }
+        .menu-button:hover { background: rgba(0,0,0,0.5); }
+        .menu-button span { display: block; width: 20px; height: 2px; background: #ffffff; border-radius: 2px; }
+        .menu-panel { position: absolute; top: 100%; right: 10px; margin-top: 10px; background: #ffffff; color: #7c3506; min-width: 200px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 8px; }
+        .menu-panel a { display: block; padding: 10px 12px; text-decoration: none; color: #7c3506; border-radius: 8px; transition: background 0.2s ease, transform 0.1s ease; }
+        .menu-panel a:hover { background: rgba(124,53,6,0.08); }
+        .menu-panel a:active { transform: scale(0.98); }
 
         @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 10px;
+                align-content: center;
+            }
+            nav .nav-button,
+            nav a {
+                font-size: 14px;
+                padding: 8px 12px;
+                white-space: normal;
+                word-break: break-word;
+                line-height: 1.2;
+                overflow: visible;
+                flex: 1 1 45%;
+                text-align: center;
+                min-width: 0;
+            }
             .product-hero img {
                 max-width: 300px;
+            }
+        }
+        @media (max-width: 480px) {
+            nav .nav-button,
+            nav a {
+                flex: 1 1 100%;
             }
         }
     </style>
@@ -273,15 +319,24 @@
         <img src="logokremeskraton.png" alt="Logo">
     </header>
 
+    
     <nav>
-        <a href="index.html" class="nav-button"><strong>BERANDA</strong></a>
-        <a href="#features" class="nav-button"><strong>UNGGULAN</strong></a>
-        <a href="#variants" class="nav-button"><strong>VARIAN</strong></a>
+        <button class="menu-button" aria-expanded="false" aria-controls="menu-panel" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div id="menu-panel" class="menu-panel" hidden>
+            <a href="index.html">Beranda</a>
+            <a href="index.html#about">Tentang Kami</a>
+            <a href="index.html#products">Produk</a>
+            <a href="index.html#contact">Kontak</a>
+            <a href="reseller.html">Daftar Reseller</a>
+        </div>
     </nav>
 
     <main class="container">
         <div class="product-hero">
-            <img src="1kgori.jpg" alt="Kremes Kraton 1KG">
             <h1>Kremes Kraton 1KG</h1>
             <p>Kelezatan Berlimpah dalam Kemasan Ekonomis</p>
         </div>
@@ -341,5 +396,33 @@
     <footer>
         &copy; 2025 Kremes Kraton. Semua hak dilindungi.
     </footer>
+    <div class="whatsapp-button">
+        <a href="https://wa.me/6287798985615" target="_blank">
+            <img src="whatsapp-icon.png" alt="WhatsApp">
+            <span>Chat Kami</span>
+        </a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.menu-button');
+            const menuPanel = document.getElementById('menu-panel');
+            function closeMenu() {
+                if (!menuPanel.hasAttribute('hidden')) { menuPanel.setAttribute('hidden', ''); menuButton.setAttribute('aria-expanded', 'false'); }
+            }
+            if (menuButton && menuPanel) {
+                menuButton.addEventListener('click', function() {
+                    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    if (expanded) closeMenu(); else { menuPanel.removeAttribute('hidden'); menuButton.setAttribute('aria-expanded', 'true'); }
+                });
+                document.addEventListener('click', function(e) {
+                    if (!menuPanel.hasAttribute('hidden')) {
+                        const inside = menuPanel.contains(e.target) || menuButton.contains(e.target);
+                        if (!inside) closeMenu();
+                    }
+                });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+            }
+        });
+    </script>
 </body>
 </html> 
