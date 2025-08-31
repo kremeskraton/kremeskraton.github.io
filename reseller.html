@@ -80,14 +80,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 20px;
         }
 
         /* Slideshow styles */
         .slideshow-container {
             position: relative;
             max-width: 100%;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 4px auto;
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -121,7 +121,7 @@
 
         .about {
             text-align: center;
-            padding: 60px 20px;
+            padding: 8px 20px;
             background: #ffe5b4;
         }
         .about h2 {
@@ -229,6 +229,9 @@
         @media (max-width: 768px) {
             header img { max-width: 90px; }
             .menu-button { width: 36px; height: 36px; }
+            .about { padding: 5px 15px; }
+            .container { padding: 10px 15px; }
+            .slideshow-container { margin: 0 auto 2px auto; }
         }
     </style>
 </head>
@@ -257,7 +260,7 @@
 
     <main class="container">
         <div class="slideshow-container">
-            <div class="slide"><img src="grosirsachet.jpg" alt="Reseller Grosir Sachet"></div>
+            <div class="slide"><img src="grosirsachet.png" alt="Reseller Grosir Sachet"></div>
             <a class="prev" onclick="rsPrevSlide()">&#10094;</a>
             <a class="next" onclick="rsNextSlide()">&#10095;</a>
         </div>
@@ -365,5 +368,4 @@
     </script>
 </body>
 </html>
-
 
