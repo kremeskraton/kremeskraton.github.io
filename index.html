@@ -7,11 +7,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="logokremeskraton.png">
     <link rel="icon" type="image/png" sizes="16x16" href="logokremeskraton.png">
     <link rel="apple-touch-icon" sizes="180x180" href="logokremeskraton.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rubik:wght@400;600&family=Roboto:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&family=Lora:wght@400;500&display=swap">
     
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lora', serif;
             margin: 0;
             padding: 0;
             background-color: #ffe5b4;
@@ -43,6 +43,7 @@
             font-size: 16px;
             font-weight: 500;
             padding: 10px 15px;
+            font-family: 'Poppins', sans-serif;
         }
         .container {
             display: flex;
@@ -74,6 +75,8 @@
             color: #e67e22;
             font-size: 18px;
             text-decoration: none !important;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
         }
         .about {
             text-align: center;
@@ -81,7 +84,7 @@
             background: #ffe5b4;
         }
         .about h2 {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Playfair Display', serif;
             font-size: clamp(28px, 5vw, 48px);
             font-weight: 800;
             margin: 0 0 12px;
@@ -90,7 +93,7 @@
             text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
         }
         .about p {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             max-width: 900px;
             margin: 6px auto;
         }
@@ -335,6 +338,83 @@
         @media (max-width: 480px) {
             .menu-button { width: 36px; height: 36px; }
         }
+        /* Popup Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 420px;
+            width: 85%;
+            animation: slideDown 0.3s ease-out;
+        }
+        .modal-content a {
+            display: block;
+            cursor: pointer;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+        }
+        .modal-content a:hover img {
+            transform: scale(1.02);
+        }
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: #e67e22;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .close-btn:hover {
+            background-color: #c0392b;
+            transform: rotate(90deg) scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 15% auto;
+                max-width: 75%;
+                width: 75%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -402,6 +482,17 @@
             <span>Chat Kami</span>
         </a>
     </div>
+    
+    <!-- Popup Modal -->
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <a href="reseller.html">
+                <img src="grosirsachet.jpg" alt="Promo Grosir Sachet">
+            </a>
+        </div>
+    </div>
+    
     <script>
         let slideIndex = 1;
 
@@ -424,9 +515,33 @@
             showSlides(slideIndex -= 1);
         }
 
+        // Modal functions
+        function closeModal() {
+            document.getElementById('promoModal').style.display = 'none';
+        }
+
         // Show first slide when page loads
         document.addEventListener('DOMContentLoaded', function() {
             showSlides(slideIndex);
+            
+            // Show popup modal on page load
+            setTimeout(function() {
+                document.getElementById('promoModal').style.display = 'block';
+            }, 500);
+            
+            // Close modal when clicking outside the image
+            document.getElementById('promoModal').addEventListener('click', function(e) {
+                if (e.target.id === 'promoModal') {
+                    closeModal();
+                }
+            });
+            
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
             
             // Smooth scroll for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
