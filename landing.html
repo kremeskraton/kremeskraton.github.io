@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@kremeskraton | Shopee</title>
+  <meta name="description" content="Klik untuk beli Kremes Kraton di link Shopee resmi. Gurih, renyah, rempah berasa — cocok buat tabur semua makanan." />
+  <meta name="theme-color" content="#e67e22" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kremes Kraton Official | Shopee" />
+  <meta property="og:description" content="Beli Kremes Kraton via link Shopee resmi. Klik tombol untuk checkout." />
+  <meta property="og:image" content="logokremeskraton.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="logokremeskraton.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="logokremeskraton.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="logokremeskraton.png" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" />
+
+  <style>
+    :root {
+      --bg: #fff2d6;
+      --brown: #7c3506;
+      --orange: #e67e22;
+      --gold: #f4c86a;
+      --cream: #fff7e6;
+      --text: #7c3506;
+      --muted: rgba(124, 53, 6, 0.72);
+      --card: rgba(255, 247, 230, 0.92);
+      --cardBorder: rgba(124, 53, 6, 0.18);
+      --shadow: 0 18px 50px rgba(124, 53, 6, 0.18);
+      --btnShadow: 0 14px 30px rgba(124, 53, 6, 0.25);
+      --ring: rgba(230, 126, 34, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 28px 14px 50px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 20% 10%, rgba(230, 126, 34, 0.25), transparent 60%),
+        radial-gradient(820px 520px at 85% 18%, rgba(244, 200, 106, 0.28), transparent 55%),
+        radial-gradient(760px 520px at 50% 90%, rgba(124, 53, 6, 0.10), transparent 60%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(124, 53, 6, 0.05) 0px,
+          rgba(124, 53, 6, 0.05) 2px,
+          transparent 2px,
+          transparent 10px
+        );
+      mix-blend-mode: multiply;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 24px;
+      padding: 22px 18px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(244, 200, 106, 0.35), transparent 45%),
+        linear-gradient(135deg, rgba(230, 126, 34, 0.15), transparent 40%);
+      opacity: 0.9;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      padding: 6px 6px 10px;
+      position: relative;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(244, 200, 106, 0.28);
+      border: 1px solid rgba(124, 53, 6, 0.16);
+      color: rgba(124, 53, 6, 0.92);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .avatar {
+      width: 104px;
+      height: 104px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, rgba(244, 200, 106, 0.65), rgba(230, 126, 34, 0.25));
+      border: 2px solid rgba(124, 53, 6, 0.22);
+      box-shadow: 0 18px 40px rgba(124, 53, 6, 0.22);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(124, 53, 6, 0.25));
+    }
+
+    h1 {
+      margin: 6px 0 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      line-height: 1.12;
+      letter-spacing: 0.2px;
+      font-weight: 800;
+      color: var(--brown);
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      max-width: 46ch;
+    }
+
+    .hero {
+      margin-top: 10px;
+      padding: 0 6px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h2 {
+      margin: 10px 0 8px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: clamp(22px, 4.4vw, 32px);
+      line-height: 1.15;
+      letter-spacing: 0.2px;
+      color: var(--brown);
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 60ch;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(124, 53, 6, 0.78);
+      font-weight: 500;
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 0 6px 6px;
+      position: relative;
+    }
+
+    .cta-note {
+      margin: 8px 0 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(124, 53, 6, 0.66);
+      font-weight: 600;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #7c3506 0%, #e67e22 58%, #f4c86a 100%);
+      color: #fff7e6;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(124, 53, 6, 0.28);
+      box-shadow: var(--btnShadow);
+      transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+      will-change: transform;
+      text-transform: uppercase;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.30) 18%, transparent 36%);
+      transform: translateX(-120%);
+      transition: transform 520ms ease;
+      opacity: 0.9;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(124, 53, 6, 0.30);
+      filter: saturate(1.05) brightness(1.02);
+    }
+
+    .link:hover::before { transform: translateX(120%); }
+
+    .link:active { transform: translateY(-1px) scale(0.99); }
+    .link:focus-visible { outline: 3px solid rgba(230, 126, 34, 0.55); outline-offset: 3px; }
+
+    .section {
+      margin-top: 16px;
+      padding: 0 6px 6px;
+      position: relative;
+    }
+
+    .section-title {
+      margin: 16px 0 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: var(--brown);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.70);
+      border: 1px solid rgba(124, 53, 6, 0.14);
+      border-radius: 16px;
+      padding: 12px 12px;
+      box-shadow: 0 10px 22px rgba(124, 53, 6, 0.10);
+    }
+
+    .pill h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: rgba(124, 53, 6, 0.95);
+    }
+
+    .pill p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(124, 53, 6, 0.75);
+      font-weight: 500;
+    }
+
+    .slideshow {
+      margin-top: 14px;
+      padding: 0 6px 10px;
+      position: relative;
+    }
+
+    .slideshow-title {
+      margin: 18px 0 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: var(--brown);
+      text-align: center;
+    }
+
+    .slideshow-frame {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(124, 53, 6, 0.16);
+      box-shadow: 0 18px 44px rgba(124, 53, 6, 0.18);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide.is-active { display: block; }
+
+    .slide-nav {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .slide-btn {
+      pointer-events: auto;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 22px;
+      color: rgba(255, 247, 230, 0.95);
+      background: rgba(124, 53, 6, 0.60);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 14px 30px rgba(124, 53, 6, 0.25);
+      transition: transform 150ms ease, background 150ms ease;
+    }
+
+    .slide-btn:hover { transform: translateY(-1px); background: rgba(124, 53, 6, 0.75); }
+    .slide-btn:active { transform: translateY(0px) scale(0.98); }
+    .slide-btn:focus-visible { outline: 3px solid rgba(230, 126, 34, 0.55); outline-offset: 3px; }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(124, 53, 6, 0.22);
+      border: 1px solid rgba(124, 53, 6, 0.18);
+    }
+
+    .dot.is-active {
+      background: rgba(230, 126, 34, 0.85);
+      border-color: rgba(230, 126, 34, 0.45);
+      box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.18);
+    }
+
+    .bottom-cta {
+      margin-top: 14px;
+      padding: 0 6px 4px;
+      text-align: center;
+    }
+
+    .bottom-cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #7c3506 0%, #e67e22 58%, #f4c86a 100%);
+      color: #fff7e6;
+      border: 1px solid rgba(124, 53, 6, 0.28);
+      box-shadow: 0 18px 36px rgba(124, 53, 6, 0.30);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottom-cta a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.30) 18%, transparent 36%);
+      transform: translateX(-120%);
+      transition: transform 520ms ease;
+      opacity: 0.9;
+    }
+
+    .bottom-cta a:hover::before { transform: translateX(120%); }
+
+    .bottom-cta p {
+      margin: 10px 0 0;
+      font-size: 12px;
+      color: rgba(124, 53, 6, 0.66);
+      font-weight: 600;
+    }
+
+    .spacer { height: 24px; }
+
+    @media (max-width: 420px) {
+      .card { border-radius: 18px; padding: 18px 14px; }
+      .card::before { border-radius: 18px; }
+      .avatar { width: 96px; height: 96px; }
+      h1 { font-size: 24px; }
+      .link { font-size: 13.5px; padding: 13px 14px; }
+    }
+
+    @media (min-width: 520px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+
+  <!-- Meta Pixel (opsional): ganti YOUR_PIXEL_ID lalu hapus "disabled" -->
+  <!--
+  <script disabled>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript disabled>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+  -->
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="@kremeskraton links">
+      <header class="profile">
+        <div class="kicker">Link Resmi</div>
+        <div class="avatar" aria-hidden="true">
+          <img src="logokremeskraton.png" alt="" />
+        </div>
+        <h1>@kremeskraton</h1>
+        <p class="subtitle">Belanja resmi Kremes Kraton</p>
+      </header>
+
+      <div class="hero">
+        <h2>Kremes gurih &amp; renyah, rempah berasa.</h2>
+        <p>Klik tombol di bawah untuk checkout di Shopee. Ini link resmi supaya aman dari toko palsu.</p>
+      </div>
+
+      <nav class="links" aria-label="Links">
+        <a class="link" id="ctaShopee" href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=landing" target="_blank" rel="noopener noreferrer">Beli di Shopee</a>
+        <p class="cta-note">Biasanya cuma butuh 1 menit sampai checkout.</p>
+      </nav>
+
+      <div class="section" aria-label="Kenapa Kremes Kraton">
+        <h3 class="section-title">Kenapa banyak yang suka?</h3>
+        <div class="grid">
+          <div class="pill">
+            <h3>Renyah &amp; gurih</h3>
+            <p>Taburan yang bikin lauk sederhana jadi naik level.</p>
+          </div>
+          <div class="pill">
+            <h3>Rempah berasa</h3>
+            <p>Aromanya “nendang”, cocok buat nasi, mie, ayam, telur.</p>
+          </div>
+          <div class="pill">
+            <h3>Untuk semua momen</h3>
+            <p>Buat stok di rumah, bekal, atau ide jualan ulang.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slideshow" aria-label="Galeri">
+        <div class="slideshow-frame" id="gallery" aria-roledescription="carousel">
+          <div class="slide is-active">
+            <img src="Screenshot_20250627_182749_Gallery.jpg" alt="Galeri Kremes Kraton 1" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="Picsart_26-03-03_00-44-06-170.jpg" alt="Galeri Kremes Kraton 2" loading="lazy" />
+          </div>
+
+          <div class="slide-nav" aria-hidden="false">
+            <button class="slide-btn" type="button" id="prevSlide" aria-label="Sebelumnya">‹</button>
+            <button class="slide-btn" type="button" id="nextSlide" aria-label="Berikutnya">›</button>
+          </div>
+        </div>
+        <div class="dots" id="galleryDots" aria-hidden="true">
+          <span class="dot is-active"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <div class="bottom-cta" aria-label="Beli sekarang">
+        <a href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=bottom" target="_blank" rel="noopener noreferrer">Beli di Shopee</a>
+        <p>Pilih varian favorit kamu, lalu checkout.</p>
+      </div>
+    </section>
+
+    <div class="spacer" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    (function () {
+      const cta = document.getElementById('ctaShopee');
+      if (!cta) return;
+
+      cta.addEventListener('click', function () {
+        try {
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'InitiateCheckout');
+          }
+        } catch (_) {}
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const root = document.getElementById('gallery');
+      if (!root) return;
+
+      const slides = Array.from(root.querySelectorAll('.slide'));
+      const prev = document.getElementById('prevSlide');
+      const next = document.getElementById('nextSlide');
+      const dotsRoot = document.getElementById('galleryDots');
+      const dots = dotsRoot ? Array.from(dotsRoot.querySelectorAll('.dot')) : [];
+
+      let idx = 0;
+      let timer = null;
+
+      function render() {
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      }
+
+      function go(n) {
+        idx = (n + slides.length) % slides.length;
+        render();
+      }
+
+      function nextSlide() { go(idx + 1); }
+      function prevSlide() { go(idx - 1); }
+
+      function start() {
+        stop();
+        timer = window.setInterval(nextSlide, 4500);
+      }
+
+      function stop() {
+        if (timer) window.clearInterval(timer);
+        timer = null;
+      }
+
+      if (next) next.addEventListener('click', function () { nextSlide(); start(); });
+      if (prev) prev.addEventListener('click', function () { prevSlide(); start(); });
+
+      // Basic swipe support
+      let startX = 0;
+      let startY = 0;
+      let active = false;
+
+      root.addEventListener('touchstart', function (e) {
+        if (!e.touches || e.touches.length !== 1) return;
+        active = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }, { passive: true });
+
+      root.addEventListener('touchend', function (e) {
+        if (!active) return;
+        active = false;
+        if (!e.changedTouches || e.changedTouches.length !== 1) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        if (dx < 0) nextSlide();
+        else prevSlide();
+        start();
+      }, { passive: true });
+
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      start();
+    })();
+  </script>
+</body>
+</html>
