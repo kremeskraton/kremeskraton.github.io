@@ -19,6 +19,25 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" />
 
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1239119327217982');
+    fbq('track', 'PageView', { page_name: 'Kremes Kraton Landing Page', source: '/landing.html' });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1239119327217982&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     :root {
       --bg: #fff2d6;
@@ -443,25 +462,6 @@
     }
   </style>
 
-  <!-- Meta Pixel (opsional): ganti YOUR_PIXEL_ID lalu hapus "disabled" -->
-  <!--
-  <script disabled>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
-    fbq('track', 'PageView');
-  </script>
-  <noscript disabled>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-  </noscript>
-  -->
 </head>
 <body>
   <main class="wrap">
@@ -481,8 +481,17 @@
       </div>
 
       <nav class="links" aria-label="Links">
-        <a class="link" id="ctaShopee" href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=landing" target="_blank" rel="noopener noreferrer">Beli di Shopee</a>
-        <p class="cta-note">Cuma butuh 1 menit sampai checkout!</p>
+        <a
+          class="link"
+          id="ctaShopee"
+          href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=landing"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-meta-track="shopee"
+          data-meta-id="landing-top-shopee"
+          data-meta-position="top"
+        >Beli di Shopee</a>
+        <p class="cta-note">Biasanya cuma butuh 1 menit sampai checkout.</p>
       </nav>
 
       <div class="section" aria-label="Kenapa Kremes Kraton">
@@ -524,7 +533,14 @@
       </div>
 
       <div class="bottom-cta" aria-label="Beli sekarang">
-        <a href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=bottom" target="_blank" rel="noopener noreferrer">Beli di Shopee</a>
+        <a
+          href="http://www.shopee.co.id/kremeskraton?utm_source=meta&utm_medium=cpc&utm_campaign=kremeskraton&utm_content=bottom"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-meta-track="shopee"
+          data-meta-id="landing-bottom-shopee"
+          data-meta-position="bottom"
+        >Beli di Shopee</a>
         <p>Pilih varian favorit kamu, lalu checkout.</p>
       </div>
     </section>
@@ -534,15 +550,45 @@
 
   <script>
     (function () {
-      const cta = document.getElementById('ctaShopee');
-      if (!cta) return;
+      const selector = '[data-meta-track="shopee"]';
+      const elements = Array.from(document.querySelectorAll(selector));
+      if (elements.length === 0) return;
 
-      cta.addEventListener('click', function () {
+      function trackClick(el) {
+        if (el.dataset.metaFired === '1') return;
+        el.dataset.metaFired = '1';
+
+        const destinationUrl = el.getAttribute('href') || '';
+        const contentId = el.dataset.metaId || '';
+        const position = el.dataset.metaPosition || '';
+
         try {
           if (typeof window.fbq === 'function') {
-            window.fbq('track', 'InitiateCheckout');
+            window.fbq('track', 'AddToWishlist', {
+              content_name: 'Beli di Shopee',
+              content_category: 'Shopee CTA',
+              content_ids: [contentId],
+              source: '/landing.html',
+              destination_url: destinationUrl,
+              page_name: 'Kremes Kraton Landing Page',
+              cta_position: position
+            });
           }
         } catch (_) {}
+
+        // Allow future tracking if user comes back and clicks again
+        window.setTimeout(function () { el.dataset.metaFired = '0'; }, 1500);
+      }
+
+      elements.forEach(function (el) {
+        el.addEventListener('click', function () { trackClick(el); }, { passive: true });
+        el.addEventListener('auxclick', function (e) {
+          if (e && e.button === 1) trackClick(el);
+        });
+        el.addEventListener('keydown', function (e) {
+          if (!e) return;
+          if (e.key === 'Enter' || e.key === ' ') trackClick(el);
+        });
       });
     })();
   </script>
